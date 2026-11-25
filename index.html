@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мультимедіа в HTML5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        header, section, footer {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .video-hero {
+            position: relative;
+            height: 260px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-color: #1c2833;
+        }
+
+        .video-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .video-hero-overlay {
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.55);
+            padding: 20px 30px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .video-hero-overlay h2 {
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .frame-box {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .frame-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        video.standard-video {
+            width: 100%;
+            max-width: 640px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            display: block;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 8px;
+        }
+
+        .map-image {
+            border: 2px solid #0d6efd;
+            border-radius: 6px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .info-badge {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background-color: #e9ecef;
+            border-left: 4px solid #0d6efd;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        canvas {
+            border: 2px solid #212529;
+            border-radius: 6px;
+            background-color: #ffffff;
+            display: block;
+            margin-top: 10px;
+            max-width: 100%;
+        }
+
+        .btn {
+            background-color: #0d6efd;
+            color: white;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-right: 8px;
+        }
+
+        .btn:hover {
+            background-color: #0b5ed7;
+        }
+
+        .btn-green {
+            background-color: #198754;
+        }
+
+        .btn-green:hover {
+            background-color: #157347;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Мультимедіа в HTML5</h1>
+        <p><strong>Виконав:</strong> студент групи ІПЗ-24-1</p>
+        <p>
+            <a href="index.html">← Посилання та кнопки</a> |
+            <a href="forms.html">← HTML-форми</a> |
+            <a href="animation.html">← Анімація</a> |
+            <a href="blocks.html">← Блоки</a> |
+            <a href="semantic-layout.html">← Семантика</a>
+        </p>
+    </header>
+    <div class="video-hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" type="video/mp4">
+            Ваш браузер не підтримує відтворення фонового відео.
+        </video>
+        <div class="video-hero-overlay">
+            <h2>Приклад фонового відео (autoplay muted loop)</h2>
+            <p>Відео програється автоматично на задньому плані без звуку та зациклено, а поверх нього розміщено текст.</p>
+        </div>
+    </div>
+    <section>
+        <h2>1. Вставка відео за допомогою тегів <video> та <iframe></h2>
+
+        <h3>Варіант А: Локальний або прямий відеофайл через тег <video></h3>
+        <p>Атрибут <code>controls</code> додає стандартну панель керування (відтворення, пауза, гучність, повний екран).</p>
+        <video class="standard-video" controls poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='100%' height='100%' fill='%232c3e50'/><text x='50%' y='50%' fill='white' font-family='Arial' font-size='22' text-anchor='middle'>Натисніть Play для запуску відео (HTML5 video)</text></svg>">
+            <source src="https://media.w3.org/2010/05/bunny/trailer.mp4" type="video/mp4">
+            Ваш браузер не підтримує тег video.
+        </video>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>Варіант Б: Вбудоване відео зі стороннього сервісу через <iframe></h3>
+        <p>За допомогою фрейму можна вставити відеоплеєр із зовнішнього відеохостингу.</p>
+        <div class="frame-box">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ"
+                title="Приклад відео через iframe"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+    <section>
+        <h2>2. Вставка звуку за допомогою тегу <audio></h2>
+        <p>Тег <code><audio controls></code> створює вбудований аудіоплеєр для відтворення звукових файлів (MP3, OGG, WAV).</p>
+        <audio controls>
+            <source src="https://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4" type="audio/mp4">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+    </section>
+    <section>
+        <h2>3. Вставка інтерактивної карти за допомогою <iframe></h2>
+        <p>Вбудована інтерактивна карта (OpenStreetMap) із зазначенням координат Києва.</p>
+        <div class="frame-box" style="padding-bottom: 45%;">
+            <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=30.4600%2C50.4700%2C30.5400%2C50.5200&layer=mapnik&marker=50.4950%2C30.5000"
+                title="Карта Києва через iframe">
+            </iframe>
+        </div>
+    </section>
+    <section>
+        <h2>4. Посилання з різних частин зображення (<map> та <area>)</h2>
+        <p>Натисніть на одну з трьох фігур на зображенні нижче — кожна зона (прямокутник, коло, багатокутник) веде на відповідну практичну роботу:</p>
+
+        <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='200'><rect width='600' height='200' fill='%23f8f9fa'/><rect x='25' y='40' width='150' height='120' rx='8' fill='%230d6efd'/><text x='100' y='95' fill='white' font-family='Arial' font-size='15' font-weight='bold' text-anchor='middle'>Прямокутник</text><text x='100' y='118' fill='white' font-family='Arial' font-size='13' text-anchor='middle'>(index.html)</text><circle cx='300' cy='100' r='65' fill='%23198754'/><text x='300' y='95' fill='white' font-family='Arial' font-size='15' font-weight='bold' text-anchor='middle'>Коло</text><text x='300' y='118' fill='white' font-family='Arial' font-size='13' text-anchor='middle'>(forms.html)</text><polygon points='500,30 575,165 425,165' fill='%23fd7e14'/><text x='500' y='118' fill='white' font-family='Arial' font-size='15' font-weight='bold' text-anchor='middle'>Трикутник</text><text x='500' y='140' fill='white' font-family='Arial' font-size='13' text-anchor='middle'>(blocks.html)</text></svg>"
+            alt="Інтерактивна схема з трьома фігурами"
+            usemap="#shapes-map"
+            width="600"
+            height="200"
+            class="map-image">
+
+        <map name="shapes-map">
+            <area shape="rect" coords="25,40,175,160" href="index.html" alt="Перейти до Посилань та кнопок" title="Перейти до index.html (Посилання та кнопки)">
+            <area shape="circle" coords="300,100,65" href="forms.html" alt="Перейти до HTML-форм" title="Перейти до forms.html (HTML-форми)">
+            <area shape="poly" coords="500,30,575,165,425,165" href="blocks.html" alt="Перейти до Блоків" title="Перейти до blocks.html (Блоки)">
+        </map>
+
+        <div class="info-badge">
+            Використано три типи зон тегу <code><area></code>: <code>shape="rect"</code>, <code>shape="circle"</code> та <code>shape="poly"</code>.
+        </div>
+    </section>
+    <section>
+        <h2>5. Векторна графіка за допомогою тегу <svg></h2>
+        <p>SVG дозволяє описувати векторні фігури прямо в HTML-коді без втрати якості при масштабуванні.</p>
+        <svg width="420" height="150" style="border: 1px solid #ccc; border-radius: 6px; background: #fff;">
+            <rect x="20" y="25" width="100" height="100" rx="12" fill="#0d6efd" stroke="#084298" stroke-width="3" />
+            <circle cx="200" cy="75" r="48" fill="#ffc107" stroke="#997404" stroke-width="3" />
+            <polygon points="330,22 346,56 384,61 356,87 363,124 330,106 297,124 304,87 276,61 314,56" fill="#198754" />
+            <text x="210" y="143" font-family="Arial" font-size="13" fill="#555" text-anchor="middle">SVG-примітиви: rect, circle, polygon, text</text>
+        </svg>
+    </section>
+    <section>
+        <h2>6. Малювання на <canvas> за допомогою JavaScript</h2>
+        <p>Елемент <code><canvas></code> створює полотно, на якому графіка малюється програмно через контекст <code>getContext('2d')</code> у JavaScript.</p>
+
+        <canvas id="studentCanvas" width="500" height="200">
+         
+        </canvas>
+
+        <button type="button" class="btn" onclick="drawScene()">Намалювати сцену заново</button>
+        <button type="button" class="btn btn-green" onclick="addRandomCircle()">Додати випадкове коло (JS)</button>
+    </section>
+
+    <footer style="text-align: center; color: #666;">
+        <p>© 2026 | Студентська робота | Група ІПЗ-24-1</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById("studentCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function drawScene() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#e7f1ff";
+            ctx.fillRect(0, 0, canvas.width, 150);
+            ctx.fillStyle = "#198754";
+            ctx.fillRect(0, 150, canvas.width, 50);
+            ctx.beginPath();
+            ctx.arc(420, 45, 25, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffc107";
+            ctx.fill();
+            ctx.strokeStyle = "#fd7e14";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(70, 80, 90, 70);
+            ctx.strokeStyle = "#333";
+            ctx.strokeRect(70, 80, 90, 70);
+
+            ctx.beginPath();
+            ctx.moveTo(60, 80);
+            ctx.lineTo(115, 40);
+            ctx.lineTo(170, 80);
+            ctx.closePath();
+            ctx.fillStyle = "#dc3545";
+            ctx.fill();
+            ctx.fillStyle = "#084298";
+            ctx.font = "bold 16px Arial";
+            ctx.fillText("Canvas + JS (ІПЗ-24-1)", 190, 95);
+        }
+
+        function addRandomCircle() {
+            const x = Math.floor(Math.random() * (canvas.width - 40)) + 20;
+            const y = Math.floor(Math.random() * (canvas.height - 40)) + 20;
+            const r = Math.floor(Math.random() * 18) + 8;
+            const colors = ["#0d6efd", "#6610f2", "#dc3545", "#fd7e14", "#20c997"];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fillStyle = randomColor;
+            ctx.fill();
+        }
+        drawScene();
+    </script>
+
+</body>
+</html>
